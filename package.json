@@ -1,8 +1,8 @@
 {
-  "name": "@thenonameorganization/placeholder-service",
+  "name": "@thenonameorganization/llm-service",
   "version": "0.0.0",
-  "description": "PLACEHOLDER_SERVICE_NAME",
-  "type": "commonjs",
+  "description": "Large Language Model Service",
+  "type": "module",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
@@ -36,12 +36,16 @@
     "lint": "eslint . --ext .ts --ext .mts",
     "test": "jest",
     "prettier": "prettier --config .prettierrc --write .",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+
+    "chat": "node --loader ts-node/esm src/cli.ts chat"
   },
   "author": "Jonathan Lafreniere <jonathan.lafreniere@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
+    "commander": "^12.0.0",
     "dotenv": "^16.4.4",
+    "openai": "^4.33.0",
     "ts-node": "^10.9.2",
     "tslib": "~2.6"
   },

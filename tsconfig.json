@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
+    "module": "ESNext", // Target ES module system
+    "target": "ESNext", // You can adjust this based on your environment
+    "moduleResolution": "node",
     "outDir": "./build",
     "rootDir": ".",
     "allowSyntheticDefaultImports": true,
