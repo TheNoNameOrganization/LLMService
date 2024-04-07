@@ -1,4 +1,4 @@
-class SomeRandomClass {
+class OpenAIService {
 
     private someRandomString: string = "Hello World!";
 
@@ -8,4 +8,4 @@ class SomeRandomClass {
 
 }
 
-export { SomeRandomClass }
+export { OpenAIService }
