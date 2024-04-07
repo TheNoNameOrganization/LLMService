@@ -38,7 +38,8 @@
     "prettier": "prettier --config .prettierrc --write .",
     "test:watch": "jest --watch",
 
-    "chat": "node --loader ts-node/esm src/cli.ts chat"
+    "chat": "node --loader ts-node/esm src/cli.ts chat -c ",
+    "complete": "node --loader ts-node/esm src/cli.ts chat"
   },
   "author": "Jonathan Lafreniere <jonathan.lafreniere@gmail.com>",
   "license": "Apache-2.0",

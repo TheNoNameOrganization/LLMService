@@ -3,7 +3,8 @@ import { OpenAIManager } from './index.js'
 import OpenAI from "openai"
 import { AssistantsPage } from "openai/resources/beta/index.mjs"
 import { RetrievalTool } from "openai/src/resources/beta/index.js"
-
+import * as fs from 'fs'
+const config = JSON.parse(await fs.readFileSync("./config.json", 'utf-8'));
 let OpenAIInstance: OpenAI
 
 type AssistantTools = Array<
@@ -24,7 +25,7 @@ export type GPTParams = {
 const DefaultGPTParams: GPTParams = {
     // Models that can handle function calling are gpt-3.5-turbo-1106 and gpt-4-turbo-preview
     // See Assistant documentation at https://platform.openai.com/docs/assistants/overview
-    model: "gpt-3.5-turbo-1106",
+    model: config.gpt.default.model,
     max_tokens: 200,
     temperature: 0.8,
     instructions: "You are a helpful assistant",
