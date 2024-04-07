@@ -2,7 +2,6 @@
 logs
 *.log
 npm-debug.log*
-
 # Dependencies
 node_modules/
 
@@ -27,3 +26,6 @@ build/
 
 # Misc
 .DS_Store
+.npmrc
+service_account_key.json
+.env

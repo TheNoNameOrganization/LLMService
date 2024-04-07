@@ -1,11 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es2022",
-    "module": "node16",
-    "lib": ["ES2022"],
-    "moduleResolution": "node16",
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "./build",
     "rootDir": ".",
-    "outDir": "build",
     "allowSyntheticDefaultImports": true,
     "importHelpers": true,
     "alwaysStrict": true,
@@ -13,7 +11,6 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
-    "skipLibCheck": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitAny": false,

@@ -1,22 +1,11 @@
-import OpenAI from "openai";
+class SomeRandomClass {
 
-export class OpenAIManager {
-    private static instance: OpenAI;
+    private someRandomString: string = "Hello World!";
 
-    public static initialize(apiKey: string) {
-        OpenAIManager.instance = new OpenAI(
-            {
-                "apiKey": apiKey,
-            }
-        );
+    constructor() {
+        console.log(this.someRandomString);
     }
 
-    private constructor() { }
-
-    public static getInstance(): OpenAI {
-        if (!OpenAIManager.instance) {
-            throw new Error("OpenAIManager is not initialized");
-        }
-        return OpenAIManager.instance;
-    }
 }
+
+export { SomeRandomClass }
