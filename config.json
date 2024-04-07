@@ -1,0 +1,10 @@
+{
+    "conversation": {
+        "persist": true
+    },
+    "gpt": {
+        "default": {
+            "model": "gpt-3.5-turbo-1106"
+        }
+    }
+}
