@@ -19,9 +19,11 @@ const openai: OpenAI = OpenAIManager.getInstance();
 
 class Conversation {
     private static dataPath = path.join('./data/GPTData.json');
+    public static persistHandler: (thread, messages)=>Promise<void>; 
     assistant: Assistant;
     thread: Thread;
     messages: Message[];
+
 
     constructor(assistant: Assistant, thread: Thread, messages: Message[] = []) {
         this.assistant = assistant;
@@ -141,6 +143,9 @@ class Conversation {
     
         // Save the updated data back to the file
         fs.writeFileSync(Conversation.dataPath, JSON.stringify(data, null, 2), 'utf-8');
+        if (Conversation.persistHandler) {
+            await Conversation.persistHandler(this.thread, this.messages);
+        }
     }
     
 }
