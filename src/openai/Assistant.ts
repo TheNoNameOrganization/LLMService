@@ -4,7 +4,12 @@ import OpenAI from "openai"
 import { AssistantsPage } from "openai/resources/beta/index.mjs"
 import { RetrievalTool } from "openai/src/resources/beta/index.js"
 import * as fs from 'fs'
-const config = JSON.parse(await fs.readFileSync("./config.json", 'utf-8'));
+import path from "path"
+import { fileURLToPath } from 'url';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+
+const config = JSON.parse(await fs.readFileSync(path.join(__dirname,"../../config.json"), 'utf-8'));
 let OpenAIInstance: OpenAI
 
 type AssistantTools = Array<

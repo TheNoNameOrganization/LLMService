@@ -9,9 +9,11 @@ import { FunctionRegistry } from "./FunctionRegistry.js";
 import { wait } from "../utils.js";
 import * as fs from 'fs';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 
-const config = JSON.parse(await fs.readFileSync("./config.json", 'utf-8'));
+const config = JSON.parse(await fs.readFileSync(path.join(__dirname,"../../config.json"), 'utf-8'));
 
 const openai: OpenAI = OpenAIManager.getInstance();
 
@@ -104,24 +106,31 @@ class Conversation {
         }
     }
 
-    private static async readOrCreateDataFile(): Promise<any> {
+    private static async readOrCreateDataFile() {
+        const dirPath = path.dirname(Conversation.dataPath);
+    
+        // Ensure the directory exists
+        if (!fs.existsSync(dirPath)) {
+            fs.mkdirSync(dirPath, { recursive: true });
+        }
+    
         if (!fs.existsSync(Conversation.dataPath)) {
             fs.writeFileSync(Conversation.dataPath, JSON.stringify({ threads: {} }), 'utf-8');
             return { threads: {} };
         }
+    
         return JSON.parse(fs.readFileSync(Conversation.dataPath, 'utf-8'));
     }
-
+    
     private async saveMessages(): Promise<void> {
         const now = new Date().toISOString(); // ISO 8601 format timestamp
-        const data = await Conversation.readOrCreateDataFile();
-
-        // Check if the thread already exists to handle created_at timestamp correctly
+        const data = await Conversation.readOrCreateDataFile(); // This ensures the directory exists
+    
+        // Your existing logic to update the thread's messages and save them
         if (!data.threads[this.thread.id]) {
             data.threads[this.thread.id] = { messages: [], created_at: now };
         }
-
-        // Update the thread's messages and updated_at timestamp
+    
         data.threads[this.thread.id].messages = this.messages.map(message => ({
             role: message.role,
             content: message.content,
@@ -129,10 +138,11 @@ class Conversation {
             updated_at: now
         }));
         data.threads[this.thread.id].updated_at = now;
-
+    
+        // Save the updated data back to the file
         fs.writeFileSync(Conversation.dataPath, JSON.stringify(data, null, 2), 'utf-8');
     }
-
+    
 }
 
 export { Conversation };

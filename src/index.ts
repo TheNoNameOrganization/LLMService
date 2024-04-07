@@ -1,3 +1,5 @@
+import { Conversation } from "./openai/Conversation.js";
+
 class OpenAIService {
 
     private someRandomString: string = "Hello World!";
@@ -8,4 +10,4 @@ class OpenAIService {
 
 }
 
-export { OpenAIService }
+export { OpenAIService, Conversation }
